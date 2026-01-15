@@ -7,7 +7,6 @@ import { PawSkeleton } from '@/components/ui/PawLoader';
 import Button from '@/components/ui/Button';
 import { Input, Select } from '@/components/ui/Input';
 import { FiSearch, FiPlus, FiEdit, FiEye, FiFileText, FiDownload, FiTrash2, FiPrinter } from 'react-icons/fi';
-import Button from '@/components/ui/Button';
 
 interface Appointment {
     _id: string;

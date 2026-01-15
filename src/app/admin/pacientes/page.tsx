@@ -8,7 +8,6 @@ import Button from '@/components/ui/Button';
 import { Input, Select } from '@/components/ui/Input';
 import { FiSearch, FiPlus, FiEdit, FiEye, FiTrash2 } from 'react-icons/fi';
 import { FaPaw } from 'react-icons/fa';
-import Button from '@/components/ui/Button';
 
 interface Patient {
     _id: string;

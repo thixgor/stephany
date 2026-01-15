@@ -59,8 +59,8 @@ export default function Header() {
                     <Image
                         src="https://i.imgur.com/6LGQ8oY.png"
                         alt="Stephany Rodrigues Medicina Veterinária"
-                        width={180}
-                        height={60}
+                        width={140}
+                        height={46}
                         className="drop-shadow-sm object-contain"
                         priority
                         onContextMenu={(e) => e.preventDefault()}

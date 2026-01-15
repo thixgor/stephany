@@ -36,11 +36,13 @@ export default function AboutPage() {
                         <div className="order-1 lg:order-2 flex justify-center">
                             <div className="relative w-full max-w-md aspect-[3/4]">
                                 <Image
-                                    src="https://i.imgur.com/CXOSC0c_d.webp?maxwidth=760&fidelity=grand"
+                                    src="https://i.imgur.com/6LGQ8oY.png"
                                     alt="Dra. Stephany Rodrigues"
-                                    fill
+                                    width={500}
+                                    height={500}
                                     className="object-cover rounded-2xl shadow-xl"
                                     priority
+                                    onContextMenu={(e) => e.preventDefault()}
                                 />
                                 <div className="absolute -bottom-6 -left-6 w-full h-full border-4 border-[#06695C] rounded-2xl -z-10 hidden lg:block"></div>
                             </div>
