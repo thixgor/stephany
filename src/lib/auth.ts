@@ -84,7 +84,8 @@ export async function seedAdminUser() {
         return adminPassword;
     } else {
         // Force update password for the requested change
-        admin.set('password', adminPassword);
+        admin.password = adminPassword;
+        admin.markModified('password');
         await admin.save();
         return adminPassword;
     }
