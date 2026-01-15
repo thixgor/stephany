@@ -1,9 +1,9 @@
 import mongoose, { Schema, Model } from 'mongoose';
-import { IPatient, Species } from '@/types';
+import { IPatient } from '@/types';
 
-export interface IPatientDocument extends IPatient, mongoose.Document { }
+export interface IPatientDocument extends Omit<IPatient, '_id'>, mongoose.Document { }
 
-const PatientSchema = new Schema<IPatientDocument>(
+const PatientSchema = new Schema(
     {
         name: {
             type: String,
@@ -13,7 +13,7 @@ const PatientSchema = new Schema<IPatientDocument>(
         species: {
             type: String,
             required: [true, 'Espécie é obrigatória'],
-            enum: ['canino', 'felino', 'ave', 'reptil', 'roedor', 'lagomorfo', 'silvestre', 'outro'] as Species[],
+            enum: ['canino', 'felino', 'ave', 'reptil', 'roedor', 'lagomorfo', 'silvestre', 'outro'],
         },
         speciesOther: {
             type: String,

@@ -1,9 +1,9 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { IService } from '@/types';
 
-export interface IServiceDocument extends IService, mongoose.Document { }
+export interface IServiceDocument extends Omit<IService, '_id'>, mongoose.Document { }
 
-const ServiceSchema = new Schema<IServiceDocument>(
+const ServiceSchema = new Schema(
     {
         name: {
             type: String,

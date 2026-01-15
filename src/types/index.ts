@@ -1,3 +1,6 @@
+import { Document } from 'mongoose';
+
+// Base Interfaces (Plain Objects)
 export type UserRole = 'admin' | 'client' | 'temp';
 
 export interface IUser {
@@ -11,7 +14,7 @@ export interface IUser {
     cpf?: string;
     isTemporary: boolean;
     tempProtocol?: string;
-    password?: string; // For creation only
+    password?: string;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -27,7 +30,7 @@ export interface IPatient {
     gender: 'Macho' | 'Fêmea';
     color?: string;
     microchip?: string;
-    tutorId?: string; // Optional if created by admin without account
+    tutorId?: string;
     tutorName: string;
     tutorCpf: string;
     tutorPhone: string;
@@ -54,17 +57,17 @@ export interface IAppointment {
     _id: string;
     protocol: string;
     patientId: IPatient | string;
-    userId?: IUser | string; // Optional for temporary users
+    userId?: IUser | string;
     services: IService[] | string[];
-    additionalServices?: string[]; // Custom service names
+    additionalServices?: string[];
     totalValue: number;
     scheduledDate: Date;
     status: AppointmentStatus;
     notes?: string;
-    location?: string; // Address
+    location?: string;
     paymentMethod?: PaymentMethod;
     paymentStatus: PaymentStatus;
-    hash?: string; // SHA-256 for verification
+    hash?: string;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -78,78 +81,35 @@ export interface IReport {
     userId?: IUser | string;
     type: ReportType;
     title: string;
-    content: string; // HTML or Markdown
-
-    // Detailed Clinical Info (for Laudo)
+    content: string;
     anamnese?: string;
-    physicalExam?: {
-        temp?: string;
-        fc?: string; // Frequência Cardíaca
-        fr?: string; // Frequência Respiratória
-        mucosas?: string;
-        tpc?: string;
-        linfonodos?: string;
-        systems?: {
-            cardiovascular?: string;
-            respiratorio?: string;
-            digestorio?: string;
-            neurologico?: string;
-            tegumentar?: string;
-            locomotor?: string;
-            outros?: string;
-        };
-    };
-
-    // Prescription Info
-    prescription?: {
-        medication: string;
-        activePrinciple?: string;
-        concentration?: string;
-        dosage: string;
-        frequency: string;
-        duration: string;
-        route?: string;
-        quantity?: string;
-        notes?: string;
-    }[];
-
-    // Exam Info
-    examDetails?: {
-        material?: string;
-        method?: string;
-        collectionDate?: Date;
-        sampleCondition?: string;
-        results?: {
-            parameter: string;
-            value: string;
-            reference: string;
-            unit?: string;
-        }[];
-    };
-
-    // Atestado Info
-    atestadoDetails?: {
-        declaration: string;
-        startDate?: Date;
-        endDate?: Date;
-        canTravel?: boolean;
-    };
-
+    physicalExam?: { [key: string]: any };
+    prescription?: { [key: string]: any }[];
+    examDetails?: { [key: string]: any };
+    atestadoDetails?: { [key: string]: any };
     diagnosis?: string;
     observations?: string;
-    attachments?: string[]; // URLs
-
-    // Security & Professional
+    attachments?: string[];
     signatureType: 'handwritten' | 'electronic';
-    signatureImage?: string; // Base64 for handwritten or path for electronic
-    reportHash?: string; // SHA-256
-    accessToken?: string; // For public sharing via link
+    signatureImage?: string;
+    reportHash?: string;
+    accessToken?: string;
     isPublic: boolean;
     status: 'draft' | 'published';
-
     createdAt: Date;
     updatedAt: Date;
 }
+
+// Mongoose Document Interfaces
+export interface IUserDocument extends Omit<IUser, '_id'>, Document {}
+
+export interface IPatientDocument extends Omit<IPatient, '_id'>, Document {}
+
+export interface IServiceDocument extends Omit<IService, '_id'>, Document {}
+
+export interface IAppointmentDocument extends Omit<IAppointment, '_id'>, Document {}
+
+export interface IReportDocument extends Omit<IReport, '_id'>, Document {}
 
 // --- Constants ---
 

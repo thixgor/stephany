@@ -1,9 +1,9 @@
 import mongoose, { Schema, Model } from 'mongoose';
 import { IAppointment, AppointmentStatus } from '@/types';
 
-export interface IAppointmentDocument extends IAppointment, mongoose.Document { }
+export interface IAppointmentDocument extends Omit<IAppointment, '_id'>, mongoose.Document { }
 
-const AppointmentSchema = new Schema<IAppointmentDocument>(
+const AppointmentSchema = new Schema(
     {
         protocol: {
             type: String,

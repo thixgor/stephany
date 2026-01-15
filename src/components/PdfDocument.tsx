@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
-import { IReport, IAppointment, IPatient } from '@/types';
+import { Document, Page, Text, View, StyleSheet, Image, Font, type DocumentProps } from '@react-pdf/renderer';
+import { IReport, IAppointment, IPatient, IAppointmentDocument, IReportDocument } from '@/types';
 
 // Styles
 const styles = StyleSheet.create({
@@ -196,12 +196,12 @@ const styles = StyleSheet.create({
 });
 
 interface PdfProps {
-    data: any; // IReport or IAppointment
+    data: IAppointmentDocument | IReportDocument | any;
     type: 'appointment' | 'report' | 'blank_form';
     qrCode?: string;
 }
 
-const PdfDocument = ({ data, type, qrCode }: PdfProps) => {
+const PdfDocument = ({ data, type, qrCode }: PdfProps): React.ReactElement<DocumentProps> => {
     const isReport = type === 'report';
     const isBlankForm = type === 'blank_form';
     const report = isReport ? (data as IReport) : null;
@@ -297,7 +297,7 @@ const PdfDocument = ({ data, type, qrCode }: PdfProps) => {
                     <Text style={[styles.tableCol, { flex: 1 }]}>Unidade</Text>
                     <Text style={[styles.tableCol, { flex: 2 }]}>Referência</Text>
                 </View>
-                {report?.examDetails?.results?.map((res, i) => (
+                {report?.examDetails?.results?.map((res: { parameter: string; value: string; unit: string; reference: string }, i: number) => (
                     <View key={i} style={styles.tableRow}>
                         <Text style={[styles.tableCol, { flex: 2 }]}>{res.parameter}</Text>
                         <Text style={[styles.tableCol, { flex: 1, fontWeight: 'bold' }]}>{res.value}</Text>

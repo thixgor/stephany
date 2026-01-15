@@ -42,7 +42,6 @@ export default function AboutPage() {
                                     height={500}
                                     className="object-cover rounded-2xl shadow-xl"
                                     priority
-                                    onContextMenu={(e) => e.preventDefault()}
                                 />
                                 <div className="absolute -bottom-6 -left-6 w-full h-full border-4 border-[#06695C] rounded-2xl -z-10 hidden lg:block"></div>
                             </div>

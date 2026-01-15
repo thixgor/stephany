@@ -95,9 +95,7 @@ export async function GET(
 
         // 4. Renderizar
         const docType = isBlank ? 'blank_form' : type;
-        const stream = await renderToStream(
-            React.createElement(PdfDocument as any, { data, type: docType, qrCode: qrCodeData })
-        );
+        const stream = await renderToStream(PdfDocument({ data, type: docType, qrCode: qrCodeData }));
 
         const download = searchParams.get('download') === 'true';
 

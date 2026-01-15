@@ -2,11 +2,11 @@ import mongoose, { Schema, Model } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import { IUser, UserRole } from '@/types';
 
-export interface IUserDocument extends IUser, mongoose.Document {
+export interface IUserDocument extends Omit<IUser, '_id'>, mongoose.Document {
     comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
-const UserSchema = new Schema<IUserDocument>(
+const UserSchema = new Schema(
     {
         email: {
             type: String,
@@ -65,9 +65,10 @@ const UserSchema = new Schema<IUserDocument>(
 // Hash password before saving
 UserSchema.pre('save', async function () {
     if (!this.isModified('password')) return;
+	if (!this.password) return;
 
     const salt = await bcrypt.genSalt(12);
-    this.password = await bcrypt.hash(this.password, salt);
+	this.password = await bcrypt.hash(this.password as string, salt);
 });
 
 // Compare password method

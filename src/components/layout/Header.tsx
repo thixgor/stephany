@@ -61,7 +61,7 @@ export default function Header() {
                         alt="Stephany Rodrigues Medicina Veterinária"
                         width={140}
                         height={46}
-                        className="drop-shadow-sm object-contain"
+                        className="h-8 w-auto sm:h-9 md:h-10 drop-shadow-sm object-contain"
                         priority
                         onContextMenu={(e) => e.preventDefault()}
                     />
