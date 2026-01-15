@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #06695C;
+  --color-primary-dark: #00231F;
+  --color-primary-light: #0A8B7A;
+  --color-beige: #FAF8F5;
+  --color-white: #FFFFFF;
+
+  --font-sans: 'Inter', 'Manrope', system-ui, -apple-system, sans-serif;
+
+  --animate-paw-bounce: pawBounce 1.2s ease-in-out infinite;
+  --animate-fade-in: fadeIn 0.5s ease-out forwards;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  body {
+    @apply bg-beige text-primary-dark font-sans antialiased overflow-x-hidden;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-primary-dark leading-tight;
+  }
+
+  /* Mobile optimizations */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Better touch targets */
+  button, a, input, select, textarea {
+    @apply touch-manipulation;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold rounded-xl transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white shadow-md hover:-translate-y-0.5 hover:shadow-lg hover:bg-primary-dark;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white;
+  }
+
+  .btn-whatsapp {
+    @apply bg-[#25D366] text-white shadow-md hover:-translate-y-0.5 hover:shadow-lg hover:bg-[#128C7E];
+  }
+
+  .card {
+    @apply bg-white rounded-2xl p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl relative overflow-hidden;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 text-base border-2 border-gray-200 rounded-xl bg-white transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none disabled:bg-gray-50 disabled:cursor-not-allowed;
+  }
+}
+
+/* Animations Keyframes */
+@keyframes pawBounce {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: translateY(-10px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #06695C;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00231F;
 }
