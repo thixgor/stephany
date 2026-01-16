@@ -6,7 +6,7 @@ import Card from '@/components/ui/Card';
 import { PawSkeleton } from '@/components/ui/PawLoader';
 import Button from '@/components/ui/Button';
 import { Input, Select } from '@/components/ui/Input';
-import { FiSearch, FiPlus, FiEdit, FiEye, FiFileText, FiDownload, FiTrash2, FiPrinter } from 'react-icons/fi';
+import { FiSearch, FiPlus, FiEdit, FiEye, FiFileText, FiDownload, FiTrash2, FiPrinter, FiLink } from 'react-icons/fi';
 
 interface Appointment {
     _id: string;
@@ -85,6 +85,27 @@ export default function AdminAtendimentos() {
             appointment.protocol.toLowerCase().includes(s)
         );
     });
+
+    const copyAccessLink = async (appointmentId: string) => {
+        try {
+            const res = await fetch(`/api/appointments/${appointmentId}/access-link`, {
+                method: 'POST',
+            });
+
+            if (!res.ok) {
+                const data = await res.json();
+                alert(data.error || 'Erro ao gerar link');
+                return;
+            }
+
+            const data = await res.json();
+            await navigator.clipboard.writeText(data.accessLink);
+            alert('Link copiado para a área de transferência!');
+        } catch (error) {
+            console.error(error);
+            alert('Erro ao copiar link');
+        }
+    };
 
     return (
         <div className="space-y-6">
@@ -200,6 +221,13 @@ export default function AdminAtendimentos() {
                                                                 </button>
                                                             </a>
                                                             <button
+                                                                onClick={() => copyAccessLink(appointment._id)}
+                                                                className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 hover:text-purple-600 transition-colors rounded-lg hover:bg-purple-50"
+                                                                title="Copiar link de acesso"
+                                                            >
+                                                                <FiLink size={18} />
+                                                            </button>
+                                                            <button
                                                                 onClick={async () => {
                                                                     if (confirm('Tem certeza que deseja excluir este atendimento? Todos os laudos associados também serão excluídos.')) {
                                                                         try {
@@ -277,6 +305,13 @@ export default function AdminAtendimentos() {
                                                     PDF
                                                 </Button>
                                             </a>
+                                            <button
+                                                onClick={() => copyAccessLink(appointment._id)}
+                                                className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center text-purple-600 hover:bg-purple-50 transition-colors rounded-xl"
+                                                title="Copiar link de acesso"
+                                            >
+                                                <FiLink size={20} />
+                                            </button>
                                             <button
                                                 onClick={async () => {
                                                     if (confirm('Tem certeza que deseja excluir este atendimento? Todos os laudos associados também serão excluídos.')) {

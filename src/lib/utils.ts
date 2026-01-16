@@ -150,3 +150,13 @@ export function generateReportHash(data: any): string {
     const stringified = JSON.stringify(data);
     return CryptoJS.SHA256(stringified).toString();
 }
+
+/**
+ * Generate access hash for protocol links
+ */
+export function generateAccessHash(protocol: string): string {
+    const timestamp = Date.now().toString();
+    const random = Math.random().toString(36).substring(2);
+    const data = `${protocol}-${timestamp}-${random}`;
+    return CryptoJS.SHA256(data).toString().substring(0, 16);
+}
