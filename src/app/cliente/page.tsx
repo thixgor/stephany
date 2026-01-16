@@ -217,22 +217,22 @@ export default function ClienteDashboard() {
             </Card>
 
             {/* Contact CTA */}
-            <Card hover={false} className="bg-gradient-to-r from-[#06695C] to-[#00231F] text-white">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                    <div>
-                        <h3 className="text-xl font-bold mb-2">Precisa de atendimento?</h3>
-                        <p className="text-white/80">Entre em contato pelo WhatsApp para agendar.</p>
+                <Card hover={false} className="bg-gradient-to-r from-[#06695C] to-[#00231F] text-white">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div>
+                            <h3 className="text-xl font-bold mb-2">Precisa de atendimento?</h3>
+                            <p className="text-white/80">Entre em contato pelo WhatsApp para agendar.</p>
+                        </div>
+                        <a
+                            href="https://wa.me/5521975787940?text=Olá%2C%20Dra.%20Stephany%21%20Gostaria%20de%20agendar%20uma%20consulta%20domiciliar%20para%20o%20meu%20pet.%20%F0%9F%90%BE"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-6 py-3 bg-white text-[#06695C] font-semibold rounded-xl hover:bg-gray-100 transition-colors"
+                        >
+                            Agendar Consulta
+                        </a>
                     </div>
-                    <a
-                        href="https://wa.me/5521975787940"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-6 py-3 bg-white text-[#06695C] font-semibold rounded-xl hover:bg-gray-100 transition-colors"
-                    >
-                        Agendar Consulta
-                    </a>
-                </div>
-            </Card>
+                </Card>
         </div>
     );
 }

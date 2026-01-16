@@ -85,7 +85,7 @@ export default function AboutPage() {
                     {/* CTA */}
                     <div className="text-center">
                         <h2 className="text-3xl font-bold text-[#00231F] mb-6">Vamos cuidar do seu pet?</h2>
-                        <Link href="https://wa.me/5521975787940" target="_blank">
+                        <Link href="https://wa.me/5521975787940?text=Olá%2C%20Dra.%20Stephany%21%20Gostaria%20de%20agendar%20uma%20consulta%20domiciliar%20para%20o%20meu%20pet.%20%F0%9F%90%BE" target="_blank">
                             <Button variant="whatsapp" size="lg">
                                 Agendar Consulta
                             </Button>
