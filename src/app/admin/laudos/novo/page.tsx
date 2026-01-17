@@ -41,7 +41,7 @@ export default function NovoLaudoPage() {
             }
         },
         prescription: [] as any[],
-        examDetails: { results: [] as any[] },
+        examDetails: { material: '', method: '', results: [] as any[] },
         atestadoDetails: { declaration: '', startDate: '', endDate: '', canTravel: true }
     });
     const [currentSpecies, setCurrentSpecies] = useState('');
@@ -277,21 +277,37 @@ export default function NovoLaudoPage() {
                         )}
 
                         {formData.type === 'exame' && (
-                            <Card hover={false}>
-                                <div className="flex justify-between items-center mb-4">
-                                    <h3 className="text-lg font-bold text-[#00231F]">Resultados de Exames</h3>
-                                    <Button type="button" size="sm" onClick={handleExamResultAdd} leftIcon={<FiPlus />}>Adicionar Parâmetro</Button>
+                            <Card hover={false} className="space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <Input
+                                        label="Material"
+                                        value={formData.examDetails.material}
+                                        onChange={(e) => setFormData({ ...formData, examDetails: { ...formData.examDetails, material: e.target.value } })}
+                                        placeholder="Ex: Sangue total, Urina, Fezes..."
+                                    />
+                                    <Input
+                                        label="Método"
+                                        value={formData.examDetails.method}
+                                        onChange={(e) => setFormData({ ...formData, examDetails: { ...formData.examDetails, method: e.target.value } })}
+                                        placeholder="Ex: Colorimétrico, Microscópico, Hematológico..."
+                                    />
                                 </div>
-                                <div className="space-y-2">
-                                    {formData.examDetails.results.map((r: any, i: number) => (
-                                        <div key={i} className="flex gap-2 items-end">
-                                            <div className="flex-1 lg:flex-[3]"><Input label="Parâmetro" value={r.parameter} onChange={(e) => { const newR = [...formData.examDetails.results]; newR[i].parameter = e.target.value; setFormData({ ...formData, examDetails: { ...formData.examDetails, results: newR } }); }} /></div>
-                                            <div className="flex-1 lg:flex-[1]"><Input label="Valor" value={r.value} onChange={(e) => { const newR = [...formData.examDetails.results]; newR[i].value = e.target.value; setFormData({ ...formData, examDetails: { ...formData.examDetails, results: newR } }); }} /></div>
-                                            <div className="flex-1 lg:flex-[1]"><Input label="Unidade" value={r.unit} onChange={(e) => { const newR = [...formData.examDetails.results]; newR[i].unit = e.target.value; setFormData({ ...formData, examDetails: { ...formData.examDetails, results: newR } }); }} /></div>
-                                            <div className="flex-1 lg:flex-[2]"><Input label="Ref." value={r.reference} onChange={(e) => { const newR = [...formData.examDetails.results]; newR[i].reference = e.target.value; setFormData({ ...formData, examDetails: { ...formData.examDetails, results: newR } }); }} /></div>
-                                            <button type="button" onClick={() => setFormData({ ...formData, examDetails: { ...formData.examDetails, results: formData.examDetails.results.filter((_: any, idx: number) => idx !== i) } })} className="mb-3 text-red-500"><FiTrash2 /></button>
-                                        </div>
-                                    ))}
+                                <div>
+                                    <div className="flex justify-between items-center mb-4">
+                                        <h3 className="text-lg font-bold text-[#00231F]">Resultados de Exames</h3>
+                                        <Button type="button" size="sm" onClick={handleExamResultAdd} leftIcon={<FiPlus />}>Adicionar Parâmetro</Button>
+                                    </div>
+                                    <div className="space-y-2">
+                                        {formData.examDetails.results.map((r: any, i: number) => (
+                                            <div key={i} className="flex gap-2 items-end">
+                                                <div className="flex-1 lg:flex-[3]"><Input label="Parâmetro" value={r.parameter} onChange={(e) => { const newR = [...formData.examDetails.results]; newR[i].parameter = e.target.value; setFormData({ ...formData, examDetails: { ...formData.examDetails, results: newR } }); }} /></div>
+                                                <div className="flex-1 lg:flex-[1]"><Input label="Valor" value={r.value} onChange={(e) => { const newR = [...formData.examDetails.results]; newR[i].value = e.target.value; setFormData({ ...formData, examDetails: { ...formData.examDetails, results: newR } }); }} /></div>
+                                                <div className="flex-1 lg:flex-[1]"><Input label="Unidade" value={r.unit} onChange={(e) => { const newR = [...formData.examDetails.results]; newR[i].unit = e.target.value; setFormData({ ...formData, examDetails: { ...formData.examDetails, results: newR } }); }} /></div>
+                                                <div className="flex-1 lg:flex-[2]"><Input label="Ref." value={r.reference} onChange={(e) => { const newR = [...formData.examDetails.results]; newR[i].reference = e.target.value; setFormData({ ...formData, examDetails: { ...formData.examDetails, results: newR } }); }} /></div>
+                                                <button type="button" onClick={() => setFormData({ ...formData, examDetails: { ...formData.examDetails, results: formData.examDetails.results.filter((_: any, idx: number) => idx !== i) } })} className="mb-3 text-red-500"><FiTrash2 /></button>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </Card>
                         )}
