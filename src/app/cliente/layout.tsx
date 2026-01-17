@@ -51,7 +51,7 @@ export default function ClienteLayout({ children }: { children: React.ReactNode 
                             alt="Logo"
                             width={140}
                             height={46}
-                            className="object-contain"
+                            className="h-9 w-auto object-contain"
                         />
                     </Link>
                 </div>

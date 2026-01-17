@@ -1,6 +1,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
+import '@/models';
 import Appointment from '@/models/Appointment';
 import Report from '@/models/Report';
 import Patient from '@/models/Patient';
@@ -12,9 +13,6 @@ import React from 'react';
 import PdfDocument from '@/components/PdfDocument';
 import QRCode from 'qrcode';
 import CryptoJS from 'crypto-js';
-
-// Register Models
-const _ = { Patient, User, Service };
 
 export async function GET(
     request: NextRequest,

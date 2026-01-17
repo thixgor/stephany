@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
+import '@/models';
 import Appointment from '@/models/Appointment';
 import Report from '@/models/Report';
 import { auth } from '@/lib/auth';
