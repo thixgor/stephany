@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: 'Stephany Rodrigues Medicina Veterinária',
     images: [
       {
-        url: 'https://i.imgur.com/TS2KcZh.png',
+        url: 'https://i.imgur.com/6LGQ8oY.png',
         width: 1200,
         height: 630,
         alt: 'Stephany Rodrigues Medicina Veterinária',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Dra. Stephany Rodrigues | Medicina Veterinária Domiciliar',
     description: 'Atendimento veterinário domiciliar no Rio de Janeiro.',
-    images: ['https://i.imgur.com/TS2KcZh.png'],
+    images: ['https://i.imgur.com/6LGQ8oY.png'],
   },
   robots: {
     index: true,

@@ -103,8 +103,8 @@ export default function RegisterPage() {
                 <div className="text-center mb-8">
                     <Link href="/">
                         <Image
-                            src="https://i.imgur.com/TS2KcZh.png"
-                            alt="Dra Pet Vet"
+                            src="https://i.imgur.com/6LGQ8oY.png"
+                            alt="Stephany Rodrigues Medicina Veterinária"
                             width={200}
                             height={70}
                             className="mx-auto drop-shadow-lg object-contain"

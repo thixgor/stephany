@@ -71,7 +71,7 @@ export default function ProtocolAccessPage() {
                 <div className="text-center mb-10">
                     <Link href="/">
                         <Image
-                            src="https://i.imgur.com/TS2KcZh.png"
+                            src="https://i.imgur.com/6LGQ8oY.png"
                             alt="Stephany Rodrigues Medicina Veterinária"
                             width={180}
                             height={60}

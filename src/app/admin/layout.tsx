@@ -57,10 +57,10 @@ export default function AdminLayout({ children }: DashboardLayoutProps) {
                     </button>
                     <Link href="/admin" className="flex items-center">
                         <Image
-                            src="https://i.imgur.com/TS2KcZh.png"
+                            src="https://i.imgur.com/6LGQ8oY.png"
                             alt="Logo"
                             width={140}
-                            height={45}
+                            height={46}
                             className="object-contain"
                         />
                     </Link>

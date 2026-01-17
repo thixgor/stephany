@@ -251,7 +251,7 @@ export default function HomePage() {
               </div>
               <div className="relative">
                 <Image
-                  src="https://i.imgur.com/TS2KcZh.png"
+                  src="https://i.imgur.com/6LGQ8oY.png"
                   alt="Logo Dra. Stephany Rodrigues"
                   width={400}
                   height={400}
