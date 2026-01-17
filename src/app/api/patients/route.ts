@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Patient from '@/models/Patient';
+import Appointment from '@/models/Appointment';
 import { auth } from '@/lib/auth';
 import { patientSchema } from '@/lib/validators';
 
@@ -27,7 +28,6 @@ export async function GET(request: NextRequest) {
         if (session.user.role === 'client') {
             query.tutorId = session.user.id;
         } else if (session.user.role === 'temp') {
-            const Appointment = (await import('@/models/Appointment')).default;
             const tempAppt = await Appointment.findOne({ protocol: (session.user as any).tempProtocol });
             if (!tempAppt) {
                 return NextResponse.json({ patients: [], pagination: { page, limit, total: 0, pages: 0 } });

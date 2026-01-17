@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Appointment from '@/models/Appointment';
+import Report from '@/models/Report';
 import { auth } from '@/lib/auth';
 
 type RouteContext = {
@@ -86,7 +87,6 @@ export async function DELETE(
         const { id } = await context.params;
 
         // 1. Delete associated reports
-        const Report = (await import('@/models/Report')).default;
         await Report.deleteMany({ appointmentId: id });
 
         // 2. Delete the appointment

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Appointment from '@/models/Appointment';
 import User from '@/models/User';
+import Patient from '@/models/Patient';
 import { createTemporaryUser } from '@/lib/auth';
 import { generateSecurePassword } from '@/lib/utils';
 
@@ -62,8 +63,7 @@ export async function POST(request: NextRequest) {
             await appointment.save();
         }
 
-        const PatientModel = (await import('@/models/Patient')).default;
-        await PatientModel.findByIdAndUpdate(appointment.patientId, {
+        await Patient.findByIdAndUpdate(appointment.patientId, {
             $set: { tutorId: userId }
         });
 
