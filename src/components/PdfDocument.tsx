@@ -233,45 +233,64 @@ const PdfDocument = ({ data, type, qrCode }: PdfProps): React.ReactElement<Docum
         </View>
     );
 
-    const renderPatientInfo = () => (
-        <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Identificação do Animal e Tutor</Text>
-            <View style={styles.grid}>
-                <View style={styles.gridItem}>
-                    <Text style={styles.label}>Animal:</Text>
-                    <Text style={styles.value}>{patient?.name || '---'}</Text>
-                </View>
-                <View style={styles.gridItem}>
-                    <Text style={styles.label}>Espécie:</Text>
-                    <Text style={styles.value}>{patient?.species || '---'}</Text>
-                </View>
-                <View style={styles.gridItem}>
-                    <Text style={styles.label}>Raça:</Text>
-                    <Text style={styles.value}>{patient?.breed || 'SRD'}</Text>
-                </View>
-                <View style={styles.gridItem}>
-                    <Text style={styles.label}>Sexo:</Text>
-                    <Text style={styles.value}>{patient?.gender || '---'}</Text>
-                </View>
-                <View style={styles.gridItem}>
-                    <Text style={styles.label}>Peso:</Text>
-                    <Text style={styles.value}>{patient?.weight ? `${patient.weight} kg` : '---'}</Text>
-                </View>
-                <View style={styles.gridItem}>
-                    <Text style={styles.label}>Idade:</Text>
-                    <Text style={styles.value}>{patient?.age || '---'}</Text>
-                </View>
-                <View style={styles.gridItem}>
-                    <Text style={styles.label}>Tutor:</Text>
-                    <Text style={styles.value}>{patient?.tutorName || '---'}</Text>
-                </View>
-                <View style={styles.gridItem}>
-                    <Text style={styles.label}>CPF:</Text>
-                    <Text style={styles.value}>{patient?.tutorCpf || '---'}</Text>
+    const renderPatientInfo = () => {
+        const species = patient?.species || '';
+        const isExotic = ['ave', 'reptil', 'roedor', 'lagomorfo', 'silvestre', 'outro'].includes(species);
+        
+        // Format species label (capitalize first letter)
+        const formatSpecies = (s: string) => s ? s.charAt(0).toUpperCase() + s.slice(1) : '---';
+        
+        return (
+            <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Identificação do Animal e Tutor</Text>
+                <View style={styles.grid}>
+                    <View style={styles.gridItem}>
+                        <Text style={styles.label}>Animal:</Text>
+                        <Text style={styles.value}>{patient?.name || '---'}</Text>
+                    </View>
+                    {isExotic ? (
+                        // Para aves e exóticos: mostra a espécie específica (breed) como "Espécie"
+                        <View style={styles.gridItem}>
+                            <Text style={styles.label}>Espécie:</Text>
+                            <Text style={styles.value}>{patient?.breed || '---'}</Text>
+                        </View>
+                    ) : (
+                        // Para cães e gatos: mostra categoria como "Espécie" e raça como "Raça"
+                        <>
+                            <View style={styles.gridItem}>
+                                <Text style={styles.label}>Espécie:</Text>
+                                <Text style={styles.value}>{formatSpecies(species)}</Text>
+                            </View>
+                            <View style={styles.gridItem}>
+                                <Text style={styles.label}>Raça:</Text>
+                                <Text style={styles.value}>{patient?.breed || 'SRD'}</Text>
+                            </View>
+                        </>
+                    )}
+                    <View style={styles.gridItem}>
+                        <Text style={styles.label}>Sexo:</Text>
+                        <Text style={styles.value}>{patient?.gender || '---'}</Text>
+                    </View>
+                    <View style={styles.gridItem}>
+                        <Text style={styles.label}>Peso:</Text>
+                        <Text style={styles.value}>{patient?.weight ? `${patient.weight} kg` : '---'}</Text>
+                    </View>
+                    <View style={styles.gridItem}>
+                        <Text style={styles.label}>Idade:</Text>
+                        <Text style={styles.value}>{patient?.age || '---'}</Text>
+                    </View>
+                    <View style={styles.gridItem}>
+                        <Text style={styles.label}>Tutor:</Text>
+                        <Text style={styles.value}>{patient?.tutorName || '---'}</Text>
+                    </View>
+                    <View style={styles.gridItem}>
+                        <Text style={styles.label}>CPF:</Text>
+                        <Text style={styles.value}>{patient?.tutorCpf || '---'}</Text>
+                    </View>
                 </View>
             </View>
-        </View>
-    );
+        );
+    };
 
     const renderExameTemplate = () => (
         <View>
